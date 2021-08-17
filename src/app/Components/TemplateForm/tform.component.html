@@ -1,0 +1,36 @@
+<div class="m-2">
+  <div class="bg-info text-white mb-2 p-2">Product:{{product}}</div>
+  <form novalidate (ngSubmit)="addProduct(newproduct)">
+    <div class="form-group">
+      <label>Name</label>
+      <input
+        name="name"
+        class="form-control"
+        [(ngModel)]="newproduct.name"
+        #name="ngModel"
+        required
+        minlength="5"
+        pattern="^[A-Za-z]+$"
+      />
+      <p *ngIf="name.dirty && name.invalid" class="text-danger">
+        <span *ngIf="name.errors?.required">You must Enter a Name</span>
+        <span *ngIf="name.errors?.minlength">Length must be 5</span>
+      </p>
+    </div>
+    <div class="form-group">
+      <label>Category</label>
+      <input
+        class="form-control"
+        name="category"
+        [(ngModel)]="newproduct.category"
+      />
+    </div>
+    <div class="form-group">
+      <label>Price</label>
+      <input class="form-control" name="price" [(ngModel)]="newproduct.price" />
+    </div>
+    <button class="btn btn-primary" type="submit">
+      Submit
+    </button>
+  </form>
+</div>
